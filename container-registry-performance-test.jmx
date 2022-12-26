@@ -10,42 +10,42 @@
         <collectionProp name="Arguments.arguments">
           <elementProp name="concurrency" elementType="Argument">
             <stringProp name="Argument.name">concurrency</stringProp>
-            <stringProp name="Argument.value">2</stringProp>
+            <stringProp name="Argument.value">${__P(registry.perftest.concurrency)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="iterations" elementType="Argument">
             <stringProp name="Argument.name">iterations</stringProp>
-            <stringProp name="Argument.value">5</stringProp>
+            <stringProp name="Argument.value">${__P(registry.perftest.iterations)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="resultsDir" elementType="Argument">
             <stringProp name="Argument.name">resultsDir</stringProp>
-            <stringProp name="Argument.value">/home/spykermj/src/container-registry-jmeter-testplan/results</stringProp>
+            <stringProp name="Argument.value">${__P(registry.perftest.outDir)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="dockerContext" elementType="Argument">
             <stringProp name="Argument.name">dockerContext</stringProp>
-            <stringProp name="Argument.value">/home/spykermj/src/container-registry-jmeter-testplan</stringProp>
+            <stringProp name="Argument.value">${__P(registry.perftest.context)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="megabytes" elementType="Argument">
             <stringProp name="Argument.name">megabytes</stringProp>
-            <stringProp name="Argument.value">10</stringProp>
+            <stringProp name="Argument.value">${__P(registry.perftest.megabytes)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="registryUrl" elementType="Argument">
             <stringProp name="Argument.name">registryUrl</stringProp>
-            <stringProp name="Argument.value">docker.io/jeremyspykerman</stringProp>
+            <stringProp name="Argument.value">${__P(registry.perftest.registryUrl)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="image" elementType="Argument">
             <stringProp name="Argument.name">image</stringProp>
-            <stringProp name="Argument.value">perftest</stringProp>
+            <stringProp name="Argument.value">${__P(registry.perftest.image)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="dockerExe" elementType="Argument">
             <stringProp name="Argument.name">dockerExe</stringProp>
-            <stringProp name="Argument.value">docker</stringProp>
+            <stringProp name="Argument.value">${__P(registry.perftest.toolExe)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
         </collectionProp>
@@ -53,7 +53,7 @@
       <stringProp name="TestPlan.user_define_classpath"></stringProp>
     </TestPlan>
     <hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="demo" enabled="true">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="main loop" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
@@ -70,8 +70,8 @@
         <com.github.johrstrom.listener.PrometheusListener guiclass="com.github.johrstrom.listener.gui.PrometheusListenerGui" testclass="com.github.johrstrom.listener.PrometheusListener" testname="Prometheus Listener" enabled="true">
           <collectionProp name="prometheus.collector_definitions">
             <elementProp name="" elementType="com.github.johrstrom.listener.ListenerCollectorConfig">
-              <stringProp name="collector.help">default help string</stringProp>
-              <stringProp name="collector.metric_name">demo_count</stringProp>
+              <stringProp name="collector.help">a counter of operations performed</stringProp>
+              <stringProp name="collector.metric_name">registry_perftest_count</stringProp>
               <stringProp name="collector.type">COUNTER</stringProp>
               <collectionProp name="collector.labels">
                 <stringProp name="1476186003">concurrency</stringProp>
@@ -83,8 +83,8 @@
               <stringProp name="listener.collector.measuring">CountTotal</stringProp>
             </elementProp>
             <elementProp name="" elementType="com.github.johrstrom.listener.ListenerCollectorConfig">
-              <stringProp name="collector.help">default help string</stringProp>
-              <stringProp name="collector.metric_name">demo_response_time</stringProp>
+              <stringProp name="collector.help">a histogram of operation durations</stringProp>
+              <stringProp name="collector.metric_name">registry_perftest_duration</stringProp>
               <stringProp name="collector.type">HISTOGRAM</stringProp>
               <collectionProp name="collector.labels">
                 <stringProp name="1476186003">concurrency</stringProp>
@@ -262,7 +262,7 @@
               <connectTime>true</connectTime>
             </value>
           </objProp>
-          <stringProp name="filename">results.csv</stringProp>
+          <stringProp name="filename">${resultsDir}/results.csv</stringProp>
         </ResultCollector>
         <hashTree/>
         <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
@@ -310,7 +310,7 @@
           <stringProp name="LoopController.loops">${iterations}</stringProp>
         </elementProp>
         <stringProp name="ThreadGroup.num_threads">${concurrency}</stringProp>
-        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">0</stringProp>
         <boolProp name="ThreadGroup.scheduler">false</boolProp>
         <stringProp name="ThreadGroup.duration"></stringProp>
         <stringProp name="ThreadGroup.delay"></stringProp>
