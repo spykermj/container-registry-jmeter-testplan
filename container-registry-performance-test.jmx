@@ -125,11 +125,6 @@
               </elementProp>
               <elementProp name="" elementType="Argument">
                 <stringProp name="Argument.name"></stringProp>
-                <stringProp name="Argument.value">.</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-              </elementProp>
-              <elementProp name="" elementType="Argument">
-                <stringProp name="Argument.name"></stringProp>
                 <stringProp name="Argument.value">-t</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
@@ -146,6 +141,11 @@
               <elementProp name="" elementType="Argument">
                 <stringProp name="Argument.name"></stringProp>
                 <stringProp name="Argument.value">SIZE_MB=${megabytes}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Argument">
+                <stringProp name="Argument.name"></stringProp>
+                <stringProp name="Argument.value">.</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
             </collectionProp>
