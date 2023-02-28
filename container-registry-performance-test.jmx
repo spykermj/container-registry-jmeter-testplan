@@ -125,11 +125,6 @@
               </elementProp>
               <elementProp name="" elementType="Argument">
                 <stringProp name="Argument.name"></stringProp>
-                <stringProp name="Argument.value">.</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-              </elementProp>
-              <elementProp name="" elementType="Argument">
-                <stringProp name="Argument.name"></stringProp>
                 <stringProp name="Argument.value">-t</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
@@ -148,16 +143,23 @@
                 <stringProp name="Argument.value">SIZE_MB=${megabytes}</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
+              <elementProp name="" elementType="Argument">
+                <stringProp name="Argument.name"></stringProp>
+                <stringProp name="Argument.value">.</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
             </collectionProp>
           </elementProp>
           <elementProp name="SystemSampler.environment" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
           <stringProp name="SystemSampler.directory">${dockerContext}</stringProp>
+          <stringProp name="SystemSampler.stdout">./testlogs/main_build_${megabytes}_${i}_stdout.log</stringProp>
+          <stringProp name="SystemSampler.stderr">./testlogs/main_build_${megabytes}_${i}_stderr.log</stringProp>
         </SystemSampler>
         <hashTree/>
         <SystemSampler guiclass="SystemSamplerGui" testclass="SystemSampler" testname="push" enabled="true">
-          <boolProp name="SystemSampler.checkReturnCode">false</boolProp>
+          <boolProp name="SystemSampler.checkReturnCode">true</boolProp>
           <stringProp name="SystemSampler.expectedReturnCode">0</stringProp>
           <stringProp name="SystemSampler.command">${dockerExe}</stringProp>
           <elementProp name="SystemSampler.arguments" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
@@ -178,6 +180,8 @@
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
           <stringProp name="SystemSampler.directory">${dockerContext}</stringProp>
+          <stringProp name="SystemSampler.stdout">./testlogs/main_push_${megabytes}_${i}_stdout.log</stringProp>
+          <stringProp name="SystemSampler.stderr">./testlogs/main_push_${megabytes}_${i}_stderr.log</stringProp>
         </SystemSampler>
         <hashTree/>
         <SystemSampler guiclass="SystemSamplerGui" testclass="SystemSampler" testname="rmi" enabled="true">
@@ -202,6 +206,8 @@
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
           <stringProp name="SystemSampler.directory">${dockerContext}</stringProp>
+          <stringProp name="SystemSampler.stdout">./testlogs/main_rmi_${megabytes}_${i}_stdout.log</stringProp>
+          <stringProp name="SystemSampler.stderr">./testlogs/main_rmi_${megabytes}_${i}_stderr.log</stringProp>
         </SystemSampler>
         <hashTree/>
         <SystemSampler guiclass="SystemSamplerGui" testclass="SystemSampler" testname="pull" enabled="true">
@@ -226,6 +232,8 @@
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
           <stringProp name="SystemSampler.directory">${dockerContext}</stringProp>
+          <stringProp name="SystemSampler.stdout">./testlogs/main_pull_${megabytes}_${i}_stdout.log</stringProp>
+          <stringProp name="SystemSampler.stderr">./testlogs/main_pull_${megabytes}_${i}_stderr.log</stringProp>
         </SystemSampler>
         <hashTree/>
         <ResultCollector guiclass="TableVisualizer" testclass="ResultCollector" testname="View Results in Table" enabled="true">
@@ -348,6 +356,8 @@
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
           <stringProp name="SystemSampler.directory">${dockerContext}</stringProp>
+          <stringProp name="SystemSampler.stdout">./testlogs/cleanup_rmi_${megabytes}_${i}_stdout.log</stringProp>
+          <stringProp name="SystemSampler.stderr">./testlogs/cleanup_rmi_${megabytes}_${i}_stdout.log</stringProp>
         </SystemSampler>
         <hashTree/>
         <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">

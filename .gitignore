@@ -1,3 +1,5 @@
 jmeter/
 *.csv
 *.log
+results/
+testlogs/
