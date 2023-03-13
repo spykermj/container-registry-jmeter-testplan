@@ -1,6 +1,9 @@
 #!/bin/sh -e
 #
 # download, extract and prepare jmeter for use with this repository
+# this downloads and prepares jmeter, but does not put it into your
+# path. Be sure to add jmeter/apache-jmeter-${JMETER_VERSION}/bin
+# to your path if you want the run script to function correctly
 
 JMETER_HOME=jmeter
 JMETER_VERSION="5.5"

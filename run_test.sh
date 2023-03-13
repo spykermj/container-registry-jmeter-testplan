@@ -12,4 +12,4 @@ if [ "$#" -ne "1" ]; then
     exit -1
 fi
 
-./jmeter/apache-jmeter-5.5/bin/jmeter -t container-registry-performance-test.jmx -p "$1" -J registry.perftest.registryRestPassword=${REGISTRY_PASSWORD} -J registry.perftest.registryRestUsername=${REGISTRY_USERNAME} -n
+jmeter -t container-registry-performance-test.jmx -p "$1" -J registry.perftest.registryRestPassword=${REGISTRY_PASSWORD} -J registry.perftest.registryRestUsername=${REGISTRY_USERNAME} -n
