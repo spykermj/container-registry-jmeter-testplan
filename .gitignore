@@ -3,3 +3,4 @@ jmeter/
 *.log
 results/
 testlogs/
+local.properties
