@@ -98,4 +98,4 @@ item_url="${baseurl}/${organisation}/${image}/${tag}/"
 
 echo "deleting item ${item_url}"
 
-curl -L -u "${REGISTRY_USERNAME}:${REGISTRY_PASSWORD}" -X DELETE "${item_url}"
+curl -f -L -u "${REGISTRY_USERNAME}:${REGISTRY_PASSWORD}" -X DELETE "${item_url}"
