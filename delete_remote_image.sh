@@ -79,11 +79,6 @@ if [ -z "${image}" ]; then
     exit -1
 fi
 
-if [ -z "${tag}" ]; then
-    show_help
-    exit -1
-fi
-
 if [ -z "${REGISTRY_USERNAME}" ]; then
     echo "The REGISTRY_USERNAME environment variable must be set"
     exit -1
@@ -94,7 +89,11 @@ if [ -z "${REGISTRY_PASSWORD}" ]; then
     exit -1
 fi
 
-item_url="${baseurl}/${organisation}/${image}/${tag}/"
+if [ -z "${tag}" ]; then
+    item_url="${baseurl}/${organisation}/${image}/"
+else
+    item_url="${baseurl}/${organisation}/${image}/${tag}/"
+fi
 
 echo "deleting item ${item_url}"
 
