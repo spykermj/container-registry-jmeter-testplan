@@ -1,4 +1,4 @@
-FROM docker.io/busybox:latest as build
+FROM busybox:latest as build
 ARG SIZE_MB=10
 
 WORKDIR /data
