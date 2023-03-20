@@ -100,6 +100,7 @@
               <stringProp name="collector.type">COUNTER</stringProp>
               <collectionProp name="collector.labels">
                 <stringProp name="1476186003">concurrency</stringProp>
+                <stringProp name="280994617">megabytes</stringProp>
                 <stringProp name="102727412">label</stringProp>
                 <stringProp name="3059181">code</stringProp>
               </collectionProp>
@@ -116,7 +117,7 @@
                 <stringProp name="102727412">label</stringProp>
                 <stringProp name="3059181">code</stringProp>
               </collectionProp>
-              <stringProp name="collector.quantiles_or_buckets">100,500,1000,3000</stringProp>
+              <stringProp name="collector.quantiles_or_buckets">1000,2129,4534,9655,20559,43777,93217,198493,422662,900000</stringProp>
               <stringProp name="listener.collector.measuring">ResponseTime</stringProp>
               <stringProp name="listener.collector.listen_to">samples</stringProp>
             </elementProp>
@@ -215,7 +216,7 @@
           <stringProp name="SystemSampler.stderr">./testlogs/main_push_${megabytes}_${i}_stderr.log</stringProp>
         </SystemSampler>
         <hashTree/>
-        <SystemSampler guiclass="SystemSamplerGui" testclass="SystemSampler" testname="rmi" enabled="true">
+        <SystemSampler guiclass="SystemSamplerGui" testclass="SystemSampler" testname="rmi_pre_pull" enabled="true">
           <boolProp name="SystemSampler.checkReturnCode">true</boolProp>
           <stringProp name="SystemSampler.expectedReturnCode">0</stringProp>
           <stringProp name="SystemSampler.command">${dockerExe}</stringProp>
@@ -237,8 +238,8 @@
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
           <stringProp name="SystemSampler.directory">${dockerContext}</stringProp>
-          <stringProp name="SystemSampler.stdout">./testlogs/main_rmi_${megabytes}_${i}_stdout.log</stringProp>
-          <stringProp name="SystemSampler.stderr">./testlogs/main_rmi_${megabytes}_${i}_stderr.log</stringProp>
+          <stringProp name="SystemSampler.stdout">./testlogs/main_rmi_pre_pull_${megabytes}_${i}_stdout.log</stringProp>
+          <stringProp name="SystemSampler.stderr">./testlogs/main_rmi_pre_pull_${megabytes}_${i}_stderr.log</stringProp>
         </SystemSampler>
         <hashTree/>
         <SystemSampler guiclass="SystemSamplerGui" testclass="SystemSampler" testname="pull" enabled="true">
@@ -265,6 +266,32 @@
           <stringProp name="SystemSampler.directory">${dockerContext}</stringProp>
           <stringProp name="SystemSampler.stdout">./testlogs/main_pull_${megabytes}_${i}_stdout.log</stringProp>
           <stringProp name="SystemSampler.stderr">./testlogs/main_pull_${megabytes}_${i}_stderr.log</stringProp>
+        </SystemSampler>
+        <hashTree/>
+        <SystemSampler guiclass="SystemSamplerGui" testclass="SystemSampler" testname="rmi_post_pull" enabled="true">
+          <boolProp name="SystemSampler.checkReturnCode">true</boolProp>
+          <stringProp name="SystemSampler.expectedReturnCode">0</stringProp>
+          <stringProp name="SystemSampler.command">${dockerExe}</stringProp>
+          <elementProp name="SystemSampler.arguments" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="Argument">
+                <stringProp name="Argument.name"></stringProp>
+                <stringProp name="Argument.value">rmi</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Argument">
+                <stringProp name="Argument.name"></stringProp>
+                <stringProp name="Argument.value">${registryUrl}/${imageBase}_${megabytes}_${i}:latest</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <elementProp name="SystemSampler.environment" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="SystemSampler.directory">${dockerContext}</stringProp>
+          <stringProp name="SystemSampler.stdout">./testlogs/main_rmi_post_pull_${megabytes}_${i}_stdout.log</stringProp>
+          <stringProp name="SystemSampler.stderr">./testlogs/main_rmi_post_pull_${megabytes}_${i}_stderr.log</stringProp>
         </SystemSampler>
         <hashTree/>
         <SystemSampler guiclass="SystemSamplerGui" testclass="SystemSampler" testname="remote_delete" enabled="true">
